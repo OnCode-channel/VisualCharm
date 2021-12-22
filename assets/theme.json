@@ -1,0 +1,10 @@
+{   
+    "MYGROUP":  "#fff",
+    "COMMENT": "#3400DD", 
+    "KEYWORD": "#ff7700", 
+    "BUILTIN": "#900090",
+    "STRING": "#00aa00",
+    "DEFINITION": "#0000ff",
+    "ERROR": "#000000",
+    "hit": "#ffffff"
+}
