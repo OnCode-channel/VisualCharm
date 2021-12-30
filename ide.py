@@ -62,8 +62,11 @@ def run(*args):
         code_output.config(state='disabled')
 
 def create_file(*args):
-    editor.delete('1.0',END)
-    save_as()
+    try:
+        editor.delete('1.0',END)
+        save_as()
+    except:
+        pass
 
 def update_label():
     row, col = editor.index('insert').split('.')
@@ -114,9 +117,6 @@ def on_edit(event):
     insert_numbers()
     editor.edit_modified(0)
 
-#file_tree = Listbox(width=30)
-#file_tree.grid()
-
 cdg = ic.ColorDelegator()
 cdg.prog = re.compile(r'\b(?P<MYGROUP>tkinter)\b|' + ic.make_pat(), re.S)
 cdg.idprog = re.compile(r'\s+(\w+)', re.S)
@@ -138,20 +138,20 @@ ip.Percolator(editor).insertfilter(cdg)
 menu_bar = Menu(compiler)
 
 file_menu = Menu(menu_bar,tearoff=0)
-file_menu.add_command(label='New      |  Ctrl+N',command=create_file)
-file_menu.add_command(label='Open    |  Ctrl+O',command=open_file)
-file_menu.add_command(label='Save      |  Ctrl+S',command=save_as)
-file_menu.add_command(label='Save as |  Ctrl+S',command=save_as)
-file_menu.add_command(label='Exit        |  Alt+F4',command=exit)
+file_menu.add_command(label='New (Ctrl+N)',command=create_file)
+file_menu.add_command(label='Open (Ctrl+O)',command=open_file)
+file_menu.add_command(label='Save (Ctrl+S)',command=save_as)
+file_menu.add_command(label='Save as (Ctrl+S)',command=save_as)
+file_menu.add_command(label='Exit (Alt+F4)',command=exit)
 menu_bar.add_cascade(label='File',menu=file_menu)
 
 run_bar = Menu(menu_bar,tearoff=0)
-run_bar.add_command(label='Run  |  Ctrl+F5',command=run)
+run_bar.add_command(label='Run (Ctrl+F5)',command=run)
 menu_bar.add_cascade(label="Run",menu=run_bar)
 
 edit_bar = Menu(menu_bar,tearoff=0)
-edit_bar.add_command(label='Undo | Ctrl+Z',command=editor.edit_undo)
-edit_bar.add_command(label='Redo  | Ctrl+Shift+Z',command=editor.edit_redo)
+edit_bar.add_command(label='Undo (Ctrl+Z)',command=editor.edit_undo)
+edit_bar.add_command(label='Redo (Ctrl+Shift+Z)',command=editor.edit_redo)
 menu_bar.add_cascade(label="Edit",menu=edit_bar)
 
 compiler.config(menu=menu_bar)
